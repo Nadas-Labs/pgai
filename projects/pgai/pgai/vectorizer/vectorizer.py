@@ -798,8 +798,8 @@ class Executor:
                 await register_vector_async(conn)
                 await self.vectorizer.config.embedding.setup()
                 while True:
-                    if not await self._should_continue_processing(conn, loops, res):
-                        return res
+                    # if not await self._should_continue_processing(conn, loops, res):
+                    #     return res
                     items_processed = await self._do_batch(conn)
                     if items_processed == 0:
                         return res
@@ -978,7 +978,7 @@ class Executor:
             int: The number of records written to the database.
         """
 
-        await self._delete_embeddings(conn, items)
+        # await self._delete_embeddings(conn, items)
         count = 0
         async for records, loading_errors in self._generate_embeddings(items):
             if loading_errors:
